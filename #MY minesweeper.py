@@ -18,24 +18,19 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
         i=minen                                  #ставим мины
         while i!=0:
             j=randrange(1,size+1)
-            print(j)
             if j%xsize==0:
                 y = j//xsize
             else:
                 y = j//xsize +1
             x=j-xsize*(y-1)
-            print(x,y)
-            print(field)
-            print(field[x-1][y-1])
-            if field[x-1][y-1]!=-1:
-                field[x-1][y-1]=-1
+            if field[y-1][x-1]!=-1:
+                field[y-1][x-1]=-1
                 i-=1
-        print(field)
     else:                                        #ошибка, если слишком много
         raise ValueError('Too many mines!')
-    for i in range(0,xsize):                     #длинная проверка и расстановка чисел
-        for j in range(0,ysize):
-            if (i!=0 and i!=xsize-1) and (j!=0 and j!=ysize-1):
+    for i in range(0,ysize):                     #длинная проверка и расстановка чисел
+        for j in range(0,xsize):
+            if (i!=0 and i!=ysize-1) and (j!=0 and j!=xsize-1):
                 if field[i][j]!=-1:
                     k=0
                     if field[i-1][j-1]==-1:
@@ -55,7 +50,7 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                     if field[i-1][j+1]==-1:
                         k+=1
                     field[i][j]=k
-            if i==0 and (j!=0 and j!=ysize-1):
+            if i==0 and (j!=0 and j!=xsize-1):
                 if field[i][j]!=-1:
                     k=0
                     if field[i][j-1]==-1:
@@ -69,7 +64,7 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                     if field[i+1][j-1]==-1:
                         k+=1
                     field[i][j]=k
-            if i==xsize-1 and (j!=0 and j!=ysize-1):
+            if i==ysize-1 and (j!=0 and j!=xsize-1):
                 if field[i][j]!=-1:
                     k=0
                     if field[i-1][j-1]==-1:
@@ -83,7 +78,7 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                     if field[i-1][j+1]==-1:
                         k+=1
                     field[i][j]=k
-            if (i!=0 and i!=xsize-1) and j==0:
+            if (i!=0 and i!=ysize-1) and j==0:
                 if field[i][j]!=-1:
                     k=0
                     if field[i-1][j]==-1:
@@ -97,7 +92,7 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                     if field[i-1][j+1]==-1:
                         k+=1
                     field[i][j]=k
-            if (i!=0 and i!=xsize-1) and j==ysize-1:
+            if (i!=0 and i!=ysize-1) and j==xsize-1:
                 if field[i][j]!=-1:
                     k=0
                     if field[i-1][j-1]==-1:
@@ -121,7 +116,7 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                     if field[i+1][j+1]==-1:
                         k+=1
                     field[i][j]=k
-            if i==0 and j==ysize-1:
+            if i==0 and j==xsize-1:
                 if field[i][j]!=-1:
                     k=0
                     if field[i][j-1]==-1:
@@ -131,7 +126,7 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                     if field[i+1][j-1]==-1:
                         k+=1
                     field[i][j]=k
-            if i==xsize-1 and j==0:
+            if i==ysize-1 and j==0:
                 if field[i][j]!=-1:
                     k=0
                     if field[i-1][j]==-1:
@@ -141,7 +136,7 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                     if field[i-1][j+1]==-1:
                         k+=1
                     field[i][j]=k
-            if i==xsize-1 and j==ysize-1:
+            if i==ysize-1 and j==xsize-1:
                 if field[i][j]!=-1:
                     k=0
                     if field[i-1][j]==-1:
@@ -162,7 +157,8 @@ def CH(i,field):
         if field[k][j] == 0:
             button[i].config(text=' ', bg='#ccb', state=DISABLED)
         elif field[k][j] == -1:
-            loss=Label(text='Your game is over.')
+            button[i].config(text='\u2665')
+            loss=Label(text='Вы проиграли.')
             loss.pack()
             for b in range(xsize*ysize):
                 button[b].config(state=DISABLED)
@@ -178,14 +174,13 @@ def game(*args):
         for j in  range(0, ysize):
             button.append(Button(frame[i], text=' ',
                             font=('mono', 16, 'bold'),
-                            width=2, height=1))
-            button[i*xsize+j].pack(side=LEFT, expand=NO, fill=Y)
-            button[i*xsize+j].bind('<Button-3>', lambda event, n=i*xsize+j: marker(n))
+                            width=3, height=1))
+            button[i*ysize+j].pack(side=LEFT, expand=NO, fill=Y)
+            button[i*ysize+j].bind('<Button-3>', lambda event, n=i*xsize+j: marker(n))
     for i in range(0,xsize*ysize):
         button[i].config(command=CH(i,field))
 def marker(n):
     button[n].config(text='\u2661')
-
 xsize=0
 ysize=-1
 minen=2
