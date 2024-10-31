@@ -162,6 +162,11 @@ def CH(i,field):
             loss.pack()
             for b in range(xsize*ysize):
                 button[b].config(state=DISABLED)
+                k=b//xsize
+                j=b-k*xsize
+                if field[k][j]==-1:
+                    button[b].config(text='\u2665')
+
     return click
 
 def game(*args):
