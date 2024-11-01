@@ -146,7 +146,6 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                     if field[j-1][i-1]==-1:
                         k+=1
                     field[j][i]=k 
-    print(field)
     return field                                #создано поле в виде массива
 def CH(i,field):
     def click():
@@ -182,7 +181,7 @@ def game(*args):
                             font=('mono', 16, 'bold'),
                             width=3, height=1))
             button[i*xsize+j].pack(side=LEFT, expand=NO, fill=Y)
-            button[i*xsize+j].bind('<Button-3>', lambda event, n=i*ysize+j: marker(n))
+            button[i*xsize+j].bind('<Button-3>', lambda event, n=i*xsize+j: marker(n))
     for i in range(0,xsize*ysize):
         button[i].config(command=CH(i,field))
 def marker(n):
