@@ -28,124 +28,125 @@ def fielding(*args):           #minen - колво мин, xsize и ysize, дл�
                 i-=1
     else:                                        #ошибка, если слишком много
         raise ValueError('Too many mines!')
-    for i in range(0,ysize):                     #длинная проверка и расстановка чисел
-        for j in range(0,xsize):
-            if (i!=0 and i!=ysize-1) and (j!=0 and j!=xsize-1):
-                if field[i][j]!=-1:
+    for i in range(0,xsize):                     #длинная проверка и расстановка чисел
+        for j in range(0,ysize):
+            if (j!=0 and j!=ysize-1) and (i!=0 and i!=xsize-1):
+                if field[j][i]!=-1:
                     k=0
-                    if field[i-1][j-1]==-1:
+                    if field[j-1][i-1]==-1:
                         k+=1
-                    if field[i-1][j]==-1:
+                    if field[j-1][i]==-1:
                         k+=1
-                    if field[i][j-1]==-1:
+                    if field[j][i-1]==-1:
                         k+=1
-                    if field[i][j+1]==-1:
+                    if field[j][i+1]==-1:
                         k+=1
-                    if field[i+1][j]==-1:
+                    if field[j+1][i]==-1:
                         k+=1
-                    if field[i+1][j+1]==-1:
+                    if field[j+1][i+1]==-1:
                         k+=1
-                    if field[i+1][j-1]==-1:
+                    if field[j+1][i-1]==-1:
                         k+=1
-                    if field[i-1][j+1]==-1:
+                    if field[j-1][i+1]==-1:
                         k+=1
-                    field[i][j]=k
-            if i==0 and (j!=0 and j!=xsize-1):
-                if field[i][j]!=-1:
+                    field[j][i]=k
+            if j==0 and (i!=0 and i!=xsize-1):
+                if field[j][i]!=-1:
                     k=0
-                    if field[i][j-1]==-1:
+                    if field[j][i-1]==-1:
                         k+=1
-                    if field[i][j+1]==-1:
+                    if field[j][i+1]==-1:
                         k+=1
-                    if field[i+1][j]==-1:
+                    if field[j+1][i]==-1:
                         k+=1
-                    if field[i+1][j+1]==-1:
+                    if field[j+1][i+1]==-1:
                         k+=1
-                    if field[i+1][j-1]==-1:
+                    if field[j+1][i-1]==-1:
                         k+=1
-                    field[i][j]=k
-            if i==ysize-1 and (j!=0 and j!=xsize-1):
-                if field[i][j]!=-1:
+                    field[j][i]=k
+            if j==ysize-1 and (i!=0 and i!=xsize-1):
+                if field[j][i]!=-1:
                     k=0
-                    if field[i-1][j-1]==-1:
+                    if field[j-1][i-1]==-1:
                         k+=1
-                    if field[i-1][j]==-1:
+                    if field[j-1][i]==-1:
                         k+=1
-                    if field[i][j-1]==-1:
+                    if field[j][i-1]==-1:
                         k+=1
-                    if field[i][j+1]==-1:
+                    if field[j][i+1]==-1:
                         k+=1
-                    if field[i-1][j+1]==-1:
+                    if field[j-1][i+1]==-1:
                         k+=1
-                    field[i][j]=k
-            if (i!=0 and i!=ysize-1) and j==0:
-                if field[i][j]!=-1:
+                    field[j][i]=k
+            if (j!=0 and j!=ysize-1) and i==0:
+                if field[j][i]!=-1:
                     k=0
-                    if field[i-1][j]==-1:
+                    if field[j-1][i]==-1:
                         k+=1
-                    if field[i][j+1]==-1:
+                    if field[j][i+1]==-1:
                         k+=1
-                    if field[i+1][j]==-1:
+                    if field[j+1][i]==-1:
                         k+=1
-                    if field[i+1][j+1]==-1:
+                    if field[j+1][i+1]==-1:
                         k+=1
-                    if field[i-1][j+1]==-1:
+                    if field[j-1][i+1]==-1:
                         k+=1
-                    field[i][j]=k
-            if (i!=0 and i!=ysize-1) and j==xsize-1:
-                if field[i][j]!=-1:
+                    field[j][i]=k
+            if (j!=0 and j!=ysize-1) and i==xsize-1:
+                if field[j][i]!=-1:
                     k=0
-                    if field[i-1][j-1]==-1:
+                    if field[j-1][i-1]==-1:
                         k+=1
-                    if field[i-1][j]==-1:
+                    if field[j-1][i]==-1:
                         k+=1
-                    if field[i][j-1]==-1:
+                    if field[j][i-1]==-1:
                         k+=1
-                    if field[i+1][j]==-1:
+                    if field[j+1][i]==-1:
                         k+=1
-                    if field[i+1][j-1]==-1:
+                    if field[j+1][i-1]==-1:
                         k+=1
-                    field[i][j]=k
+                    field[j][i]=k
             if i==0 and j==0:
-                if field[i][j]!=-1:
+                if field[j][i]!=-1:
                     k=0
-                    if field[i][j+1]==-1:
+                    if field[j][i+1]==-1:
                         k+=1
-                    if field[i+1][j]==-1:
+                    if field[j+1][i]==-1:
                         k+=1
-                    if field[i+1][j+1]==-1:
+                    if field[j+1][i+1]==-1:
                         k+=1
-                    field[i][j]=k
-            if i==0 and j==xsize-1:
-                if field[i][j]!=-1:
+                    field[j][i]=k
+            if j==0 and i==xsize-1:
+                if field[j][i]!=-1:
                     k=0
-                    if field[i][j-1]==-1:
+                    if field[j][i-1]==-1:
                         k+=1
-                    if field[i+1][j]==-1:
+                    if field[j+1][i]==-1:
                         k+=1
-                    if field[i+1][j-1]==-1:
+                    if field[j+1][i-1]==-1:
                         k+=1
-                    field[i][j]=k
-            if i==ysize-1 and j==0:
-                if field[i][j]!=-1:
+                    field[j][i]=k
+            if j==ysize-1 and i==0:
+                if field[j][i]!=-1:
                     k=0
-                    if field[i-1][j]==-1:
+                    if field[j-1][i]==-1:
                         k+=1
-                    if field[i][j+1]==-1:
+                    if field[j][i+1]==-1:
                         k+=1
-                    if field[i-1][j+1]==-1:
+                    if field[j-1][i+1]==-1:
                         k+=1
-                    field[i][j]=k
-            if i==ysize-1 and j==xsize-1:
-                if field[i][j]!=-1:
+                    field[j][i]=k
+            if j==ysize-1 and i==xsize-1:
+                if field[j][i]!=-1:
                     k=0
-                    if field[i-1][j]==-1:
+                    if field[j-1][i]==-1:
                         k+=1
-                    if field[i][j-1]==-1:
+                    if field[j][i-1]==-1:
                         k+=1
-                    if field[i-1][j-1]==-1:
+                    if field[j-1][i-1]==-1:
                         k+=1
-                    field[i][j]=k 
+                    field[j][i]=k 
+    print(field)
     return field                                #создано поле в виде массива
 def CH(i,field):
     def click():
@@ -173,15 +174,15 @@ def game(*args):
     xsize=int(x_entry.get())
     ysize=int(y_entry.get())
     field=fielding()
-    for i in range(0, xsize):                          # Размещаем кнопки
+    for i in range(0, ysize):                         # Размещаем кнопки
         frame.append(Frame())
         frame[i].pack(expand=YES, fill=BOTH)
-        for j in  range(0, ysize):
+        for j in  range(0, xsize):
             button.append(Button(frame[i], text=' ',
                             font=('mono', 16, 'bold'),
                             width=3, height=1))
-            button[i*ysize+j].pack(side=LEFT, expand=NO, fill=Y)
-            button[i*ysize+j].bind('<Button-3>', lambda event, n=i*xsize+j: marker(n))
+            button[i*xsize+j].pack(side=LEFT, expand=NO, fill=Y)
+            button[i*xsize+j].bind('<Button-3>', lambda event, n=i*ysize+j: marker(n))
     for i in range(0,xsize*ysize):
         button[i].config(command=CH(i,field))
 def marker(n):
