@@ -18,18 +18,22 @@ def dipart(graph, node, colors=None, color=0):
 def check(graph,n):
 
     colors={}
-    for i in range(n):
+    for i in range(1,n+1):
         node=i
+        #print(node)
+        if node not in graph:
+            return False
         if node not in colors:
             if not dipart(graph, node, colors):
                 return False
     return True
+
 n=int(input('Введите число человек:'))
 g=defaultdict(list)
 l=int(input('Введите число элементов dislike:')) #число элементов dislike
 dis=[[j for i in range(2)] for j in range(l)] 
 for i in range(l):
-    dis[i]=list(map(int, input(f'Введите через пробел {i+1} элемент dislike').split()))
+    dis[i]=list(map(int, input(f'Введите через пробел {i+1} элемент dislike:').split()))
 
 for i in range(len(dis)):
     nums=dis[i]
