@@ -1,10 +1,11 @@
+from collections import defaultdict
 def dipart(graph, node, colors=None, color=0):
 
     if colors is None:
         colors = {}
 
-    '''if node in colors:
-        return colors[node]==color'''
+    if node in colors:
+        return colors[node]==color
     
     colors[node] = color
     #print(colors)
@@ -14,19 +15,26 @@ def dipart(graph, node, colors=None, color=0):
         
     return True
 
-def check(graph):
+def check(graph,n):
 
     colors={}
-    for node in graph:
+    for i in range(n):
+        node=i
         if node not in colors:
             if not dipart(graph, node, colors):
                 return False
     return True
-graph = {
-    0: [1, 3],
-    1: [0, 2],
-    2: [ 1, 3],
-    3: [0, 2]
-}
+n=int(input('Введите число человек:'))
+g=defaultdict(list)
+l=int(input('Введите число элементов dislike:')) #число элементов dislike
+dis=[[j for i in range(2)] for j in range(l)] 
+for i in range(l):
+    dis[i]=list(map(int, input(f'Введите через пробел {i+1} элемент dislike').split()))
 
-print("Граф двудольный" if check(graph) else "Граф не двудольный")
+for i in range(len(dis)):
+    nums=dis[i]
+    g[nums[0]].append(nums[1])
+
+#print(g)
+print(True if check(g,n) else False)
+
